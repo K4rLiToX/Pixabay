@@ -10,8 +10,16 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.carlosdiestro.pixabay.ui.theme.PixabayTheme
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.carlosdiestro.pixabay.core.ui.theme.PixabayTheme
+import com.carlosdiestro.pixabay.images.ui.ImagesScreen
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +30,24 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    val navController = rememberNavController()
 
+                    NavHost(
+                        navController = navController,
+                        startDestination = "images"
+                    ) {
+                        composable(
+                            route = "images"
+                        ) {
+                            ImagesScreen(navController)
+                        }
+                        composable(
+                            route = "image_detail/{id}",
+                            arguments = listOf(navArgument("id") { type = NavType.IntType })
+                        ) {
+
+                        }
+                    }
                 }
             }
         }
