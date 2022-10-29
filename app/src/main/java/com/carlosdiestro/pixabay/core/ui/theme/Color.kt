@@ -1,4 +1,4 @@
-package com.carlosdiestro.pixabay.ui.theme
+package com.carlosdiestro.pixabay.core.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
