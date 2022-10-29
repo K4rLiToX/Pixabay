@@ -7,5 +7,6 @@ class SubmitQueryUseCase @Inject constructor(
     private val repository: ImageRepository
 ) {
 
-    suspend operator fun invoke(query: String) = repository.cacheImagesByQuery(query.replace(" ", "+"))
+    suspend operator fun invoke(query: String) =
+        repository.cacheImagesByQuery(query.replace(" ", "+"))
 }

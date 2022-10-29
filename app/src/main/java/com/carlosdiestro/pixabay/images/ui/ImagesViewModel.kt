@@ -2,8 +2,8 @@ package com.carlosdiestro.pixabay.images.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.carlosdiestro.pixabay.images.domain.usecases.SubmitQueryUseCase
 import com.carlosdiestro.pixabay.images.domain.usecases.GetImagesUseCase
+import com.carlosdiestro.pixabay.images.domain.usecases.SubmitQueryUseCase
 import com.carlosdiestro.pixabay.utils.Constants
 import com.carlosdiestro.pixabay.utils.toSimplePLO
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -28,7 +28,7 @@ class ImagesViewModel @Inject constructor(
     }
 
     fun onEvent(event: ImagesEvent) {
-        when(event) {
+        when (event) {
             is ImagesEvent.SubmitQuery -> {
                 submitQuery(event.value)
                 fetchImages(event.value)
