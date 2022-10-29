@@ -3,6 +3,7 @@ package com.carlosdiestro.pixabay.utils
 import com.carlosdiestro.pixabay.core.data.models.ImageDto
 import com.carlosdiestro.pixabay.core.domain.Image
 import com.carlosdiestro.pixabay.core.framework.local.ImageEntity
+import com.carlosdiestro.pixabay.image_details.ui.models.ImagePLO
 import com.carlosdiestro.pixabay.images.ui.models.SimpleImagePLO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -50,3 +51,14 @@ fun List<ImageEntity>.toDomain(): List<Image> = this.map { it.toDomain() }
 @JvmName("toDomainImageEntity")
 fun Flow<List<ImageEntity>>.toDomain(): Flow<List<Image>> = this.map { it.toDomain() }
 fun Flow<ImageEntity>.toDomain(): Flow<Image> = this.map { it.toDomain() }
+
+fun Image.toPLO(): ImagePLO = ImagePLO(
+    id = id,
+    imageUrl = imageUrl,
+    userName = userName,
+    tags = tags,
+    likes = likes,
+    downloads = downloads,
+    comments = comments,
+    querySearch = querySearch
+)

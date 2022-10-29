@@ -16,6 +16,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.carlosdiestro.pixabay.core.ui.theme.PixabayTheme
+import com.carlosdiestro.pixabay.image_details.ui.ImageDetailScreen
 import com.carlosdiestro.pixabay.images.ui.ImagesScreen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -45,7 +46,7 @@ class MainActivity : ComponentActivity() {
                             route = "image_detail/{id}",
                             arguments = listOf(navArgument("id") { type = NavType.IntType })
                         ) {
-
+                            ImageDetailScreen(navController)
                         }
                     }
                 }
