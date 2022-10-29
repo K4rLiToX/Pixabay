@@ -1,8 +1,11 @@
 package com.carlosdiestro.pixabay.image_details.ui
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.rounded.*
@@ -30,11 +33,13 @@ fun ImageDetailScreen(
 ) {
 
     val state = viewModel.state.collectAsState()
+    val scrollState = rememberScrollState()
 
     ConstraintLayout(
         modifier = Modifier
             .fillMaxSize()
             .padding(24.dp)
+            .verticalScroll(scrollState, true)
     ) {
         val (topBar, image, userName, tags, social) = createRefs()
 

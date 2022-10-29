@@ -3,4 +3,5 @@
     <string name="action_go_details">Go to Details</string>
     <string name="action_close">Close</string>
     <string name="title_dialog">Do you want to see the detail view?</string>
+    <string name="title_warning">Seems there is no data available yet</string>
 </resources>

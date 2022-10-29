@@ -9,5 +9,5 @@ class GetImagesUseCase @Inject constructor(
     private val repository: ImageRepository
 ) {
 
-    operator fun invoke(query: String): Flow<List<Image>> = repository.getImagesByQuery(query)
+    operator fun invoke(query: String): Flow<List<Image>> = repository.getImagesByQuery(query.replace(" ", "+"))
 }
