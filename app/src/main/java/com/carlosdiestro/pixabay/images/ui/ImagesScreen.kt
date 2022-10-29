@@ -11,9 +11,11 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -21,6 +23,7 @@ import androidx.constraintlayout.compose.Dimension
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
+import com.carlosdiestro.pixabay.R
 import com.carlosdiestro.pixabay.images.ui.models.SimpleImagePLO
 import com.carlosdiestro.pixabay.utils.Constants
 
@@ -31,6 +34,14 @@ fun ImagesScreen(
     viewModel: ImagesViewModel = hiltViewModel()
 ) {
     val state = viewModel.state.collectAsState()
+
+    val openDialog = remember {
+        mutableStateOf(false)
+    }
+
+    val itemId = remember {
+        mutableStateOf(-1)
+    }
 
     ConstraintLayout(
         modifier = Modifier
@@ -92,11 +103,24 @@ fun ImagesScreen(
                 ImageCard(
                     image = img,
                     onClick = {
-                        "${navController.navigate(" image_detail")}/$it"
+                        openDialog.value = true
+                        itemId.value = it
                     }
                 )
             }
         }
+    }
+
+    if (openDialog.value && itemId.value != -1) {
+        ConfirmationDialog(
+            onConfirmation = {
+                navController.navigate("image_detail/${itemId.value}")
+            },
+            onDismiss = {
+                openDialog.value = false
+                itemId.value = -1
+            }
+        )
     }
 }
 
@@ -148,4 +172,38 @@ fun ImageCard(
             fontSize = 16.sp
         )
     }
+}
+
+@Composable
+fun ConfirmationDialog(
+    modifier: Modifier = Modifier,
+    onConfirmation: () -> Unit,
+    onDismiss: () -> Unit
+) {
+
+    AlertDialog(
+        modifier = modifier,
+        onDismissRequest = onDismiss,
+        confirmButton = {
+            Button(
+                onClick = onConfirmation
+            ) {
+                Text(
+                    text = stringResource(id = R.string.action_go_details)
+                )
+            }
+        },
+        dismissButton = {
+            Button(
+                onClick = onDismiss
+            ) {
+                Text(
+                    text = stringResource(id = R.string.action_close)
+                )
+            }
+        },
+        title = {
+            Text(text = stringResource(id = R.string.title_dialog))
+        }
+    )
 }
