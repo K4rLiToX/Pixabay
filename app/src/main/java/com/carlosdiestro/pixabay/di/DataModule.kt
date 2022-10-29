@@ -1,7 +1,7 @@
 package com.carlosdiestro.pixabay.di
 
 import com.carlosdiestro.pixabay.core.data.repositories.ImageRepositoryImpl
-import com.carlosdiestro.pixabay.images.domain.repositories.ImageRepository
+import com.carlosdiestro.pixabay.core.domain.repositories.ImageRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

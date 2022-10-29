@@ -1,6 +1,6 @@
 package com.carlosdiestro.pixabay.images.domain.usecases
 
-import com.carlosdiestro.pixabay.images.domain.repositories.ImageRepository
+import com.carlosdiestro.pixabay.core.domain.repositories.ImageRepository
 import javax.inject.Inject
 
 class SubmitQueryUseCase @Inject constructor(

@@ -1,11 +1,10 @@
 package com.carlosdiestro.pixabay.core.data.repositories
 
-import android.util.Log
 import com.carlosdiestro.pixabay.BuildConfig
-import com.carlosdiestro.pixabay.core.domain.Image
+import com.carlosdiestro.pixabay.core.domain.models.Image
+import com.carlosdiestro.pixabay.core.domain.repositories.ImageRepository
 import com.carlosdiestro.pixabay.core.framework.local.ImageDao
 import com.carlosdiestro.pixabay.core.framework.remote.PixabayApi
-import com.carlosdiestro.pixabay.images.domain.repositories.ImageRepository
 import com.carlosdiestro.pixabay.utils.toDomain
 import com.carlosdiestro.pixabay.utils.toEntity
 import kotlinx.coroutines.flow.Flow
@@ -27,7 +26,6 @@ class ImageRepositoryImpl @Inject constructor(
     }
 
     override suspend fun cacheImagesByQuery(query: String) {
-        Log.d("DEBUG", "cacheImagesByQuery: $query")
         val response = try {
             api.getImagesByQuery(BuildConfig.API_KEY, query)
         } catch (e: Exception) {
@@ -35,7 +33,6 @@ class ImageRepositoryImpl @Inject constructor(
         }
 
         if (response.isSuccessful && response.body() != null) {
-            Log.d("DEBUG", "cacheImagesByQuery: ${response.body()!!.images}")
             dao.insert(response.body()!!.images.toEntity(query))
         }
     }

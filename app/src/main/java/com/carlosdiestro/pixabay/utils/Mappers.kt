@@ -1,7 +1,7 @@
 package com.carlosdiestro.pixabay.utils
 
 import com.carlosdiestro.pixabay.core.data.models.ImageDto
-import com.carlosdiestro.pixabay.core.domain.Image
+import com.carlosdiestro.pixabay.core.domain.models.Image
 import com.carlosdiestro.pixabay.core.framework.local.ImageEntity
 import com.carlosdiestro.pixabay.image_details.ui.models.ImagePLO
 import com.carlosdiestro.pixabay.images.ui.models.SimpleImagePLO

@@ -1,7 +1,7 @@
 package com.carlosdiestro.pixabay.image_details.domain.usecases
 
-import com.carlosdiestro.pixabay.core.domain.Image
-import com.carlosdiestro.pixabay.images.domain.repositories.ImageRepository
+import com.carlosdiestro.pixabay.core.domain.models.Image
+import com.carlosdiestro.pixabay.core.domain.repositories.ImageRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

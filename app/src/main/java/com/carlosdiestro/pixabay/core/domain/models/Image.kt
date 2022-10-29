@@ -1,4 +1,4 @@
-package com.carlosdiestro.pixabay.core.domain
+package com.carlosdiestro.pixabay.core.domain.models
 
 class Image(
     val id: Int,
